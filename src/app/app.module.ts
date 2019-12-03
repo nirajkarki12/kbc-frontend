@@ -2,8 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -56,8 +54,6 @@ const toastrConfig = {
     BrowserAnimationsModule,
     HttpClientModule,
     ToastrModule.forRoot(toastrConfig),
-    MatDialogModule,
-    MatButtonModule,
     AppRoutingModule,
     CoreModule,
     SharedModule,
