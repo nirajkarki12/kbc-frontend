@@ -24,11 +24,23 @@ export const navItems: INavData[] = [
         name: 'Create',
         url: '/bank/create',
         icon: 'icon-plus'
+      }
+    ]
+  },
+  {
+    name: 'ATM Charge',
+    url: '/dashboard',
+    icon: 'icon-target',
+    children: [
+      {
+        name: 'List',
+        url: '/atm-charge/list',
+        icon: 'icon-list'
       },
       {
-        name: 'Transaction Charge',
-        url: '/bank/transaction-charge',
-        icon: 'icon-target'
+        name: 'Create',
+        url: '/atm-charge/create',
+        icon: 'icon-plus'
       }
     ]
   },

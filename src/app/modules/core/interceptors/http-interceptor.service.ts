@@ -56,21 +56,21 @@ export class HttpInterceptorService implements HttpInterceptor {
               case 401:
               if (errorResponse.error.message === 'Authorization Token not found') {
                 // console.log('Authorization Token not found');
-                this.toastr.showMessage(errorResponse.error.message, 'error');
+                this.toastr.showMessage('Session Time out', 'error');
                 this.router.navigate([AppRoutes.login]);
               }
               break;
               case 408:
                 if (errorResponse.error.message === 'Token is Expired') {
                   // console.log('Token is Expired');
-                  this.toastr.showMessage(errorResponse.error.message, 'error');
+                  this.toastr.showMessage('Session Time out', 'error');
                   this.router.navigate([AppRoutes.login]);
                 }
                 break;
                 case 405:
                 if (errorResponse.error.message === 'Token is Invalid') {
                   console.log('Token is Invalid');
-                  this.toastr.showMessage(errorResponse.error.message, 'error');
+                  this.toastr.showMessage('Session Time out, Unauthorized Access', 'error');
                   this.router.navigate([AppRoutes.login]);
                 }
                 break;

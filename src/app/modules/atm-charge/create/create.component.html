@@ -1,0 +1,64 @@
+<div class="animated fadeIn">
+   <div class="col-sm-9">
+      <div class="card">
+         <div class="card-header">
+            Add new Record
+         </div>
+         <div class="card-body">
+            <form [formGroup]="atmForm" (submit)="create()">
+               <div class="row">
+                  <div class="form-group col-sm-7">
+                     <label for="from-bank">From Bank</label>
+                     <angular2-multiselect [data]="banks" id="from-bank" [(ngModel)]="selectFromBank" [ngModelOptions]="{standalone: true}"
+                        [settings]="bankFromSettings"
+                        >
+                     </angular2-multiselect>
+                  </div>
+                  <div class="form-group col-sm-5">
+                     <label for="network">Network</label>
+                     <angular2-multiselect [data]="networks" id="network" [(ngModel)]="selectNetwork" [ngModelOptions]="{standalone: true}"
+                        [settings]="networkSettings" 
+                        >
+                     </angular2-multiselect>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="to-bank">To Bank</label>
+                  <angular2-multiselect [data]="banks" id="to-bank" [(ngModel)]="selectToBank" [ngModelOptions]="{standalone: true}" 
+                     [settings]="bankToSettings" 
+                     >
+                  </angular2-multiselect>
+               </div>
+               {{ selectNetwork | json }}
+               <div class="row">
+                  <div class="form-group col-sm-4">
+                     <label for="charge">Charge</label>
+                     <input type="number" class="form-control" id="charge" placeholder="Charge" formControlName="charge">
+                     <span *ngIf="atmForm.get('charge').errors && (atmForm.get('charge').dirty || atmForm.get('charge').touched)">
+                        <span class="help-block text-red" *ngIf="atmForm.get('charge').errors.required">Charge is required</span>
+                        <span class="help-block text-red" *ngIf="atmForm.get('charge').errors.gte">Charge Should be greater or equal to 10</span>
+                        <span class="help-block text-red" *ngIf="atmForm.get('charge').errors.lte">Charge Should be less or equal to 1000</span>
+                     </span>
+                  </div>
+                  <div class="form-group col-sm-8">
+                     <label for="notes">Note</label>
+                     <textarea class="form-control" id="notes" placeholder="Note.." rows="5" formControlName="note"></textarea>
+                     <span *ngIf="atmForm.get('note').errors && (atmForm.get('note').dirty || atmForm.get('note').touched)">
+                        <span class="help-block text-red" *ngIf="atmForm.get('note').errors.minlength">Too Short Note</span>
+                        <span class="help-block text-red" *ngIf="atmForm.get('note').errors.maxlength">Note length should be less than 255</span>
+                     </span>
+                  </div>
+               </div>
+               
+               <div class="form-actions">
+                  <button type="submit" class="btn btn-success" [disabled]="
+                        (buttonClicked || atmForm.invalid) && 
+                        (!selectFromBank || !selectNetwork || !selectToBank)"
+                        >Save</button>
+                  <!-- <button class="btn btn-secondary" type="button">Cancel</button> -->
+               </div>
+            </form>
+         </div>
+      </div>
+   </div><!--/.col-->
+</div>

@@ -18,7 +18,7 @@ export class CreateComponent implements OnInit {
   bankForm: FormGroup;
   bank: Bank = new Bank();
   logo; File;
-  buttonClicked = false;
+  buttonClicked: Boolean = false;
   @ViewChild('fileInput', {static: false}) fileInput;
 
   constructor(

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ValidatorMessageService } from 'src/app/modules/shared/services/validator-message/validator-message.service';
 import { AppRoutes } from 'src/app/constants/app-routes';
-import { BankService } from '../bank.service';
+import { BankService } from 'src/app/modules/bank/services/bank.service';
+import { ValidatorMessageService } from 'src/app/modules/shared/services/validator-message/validator-message.service';
 
 @Injectable({
   providedIn: 'root'

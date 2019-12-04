@@ -10,7 +10,7 @@ export class AppRoutes {
   public static users = 'users';
   public static bank = 'bank';
   public static detail = 'detail/:id';
-  public static transactionCharge = 'transaction-charge';
+  public static atmCharge = 'atm-charge';
   // pages
   public static serverError = '500';
   public static notFound = '404';

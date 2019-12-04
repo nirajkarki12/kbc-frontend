@@ -109,6 +109,10 @@ export const routes: Routes = [
           {
             path: AppRoutes.bank,
             loadChildren: () => import('./modules/bank/bank.module').then(m => m.BankModule)
+          },
+          {
+            path: AppRoutes.atmCharge,
+            loadChildren: () => import('./modules/atm-charge/atm-charge.module').then(m => m.AtmChargeModule)
           }
         ]
       },
