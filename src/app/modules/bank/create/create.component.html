@@ -29,7 +29,10 @@
                <div class="form-group">
                   <label for="logo">Logo</label>
                   <div class="col-md-12">
-                     <input type="file" id="logo" (change)="uploadPicture()" #fileInput accept="image/x-png,image/gif,image/jpeg,image/jpg">
+                     <input type="file" id="logo" (change)="uploadPicture()" #fileInput accept="image/x-png,image/gif,image/jpeg,image/jpg" formControlName="logo">
+                     <span *ngIf="bankForm.get('logo').errors && (bankForm.get('logo').dirty || bankForm.get('logo').touched)">
+                        <span class="help-block text-red" *ngIf="bankForm.get('logo').errors.required">Logo is required</span>
+                     </span>
                   </div>
                </div>
                <div class="form-actions">

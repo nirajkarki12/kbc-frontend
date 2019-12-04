@@ -17,7 +17,7 @@ export class BankFormService {
     return this.fb.group({
         name: [bank.name, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
         abbre: [bank.abbre, [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-        logo: [bank.logo],
+        logo: [bank.logo, [Validators.required]],
       });
   }
 }

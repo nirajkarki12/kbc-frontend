@@ -80,7 +80,7 @@ export class BankService {
       .catch(this.handleError);
   }
 
-  removeBank(bankId: Number): Promise<any> {
+  removeBank(bankId: any): Promise<any> {
     return this.http
       .delete(
         ApiConstants.API_ENDPOINT +
@@ -92,7 +92,7 @@ export class BankService {
       )
       .toPromise()
       .then(this.handleSuccess)
-      .then(this.handleError);
+      .catch(this.handleError);
   }
 
    handleSuccess(response: any): Promise<any> {

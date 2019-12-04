@@ -5,12 +5,14 @@ import { ListComponent } from './list/list.component';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
+import { TransactionChargeComponent } from './transaction-charge/transaction-charge.component';
 
 @NgModule({
   declarations: [
     ListComponent,
     CreateComponent,
     EditComponent,
+    TransactionChargeComponent,
   ],
   imports: [
     SharedModule,
