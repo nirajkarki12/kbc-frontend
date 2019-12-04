@@ -11,11 +11,13 @@ export class BankService {
 
   constructor(private http: HttpClient) { }
 
-  create(bankModel: Bank, logo: File): Promise<any> {
+  create(bankModel: Bank, logo: File = null): Promise<any> {
     const input = new FormData();
     input.append('name', bankModel.name);
     input.append('abbre', bankModel.abbre);
-    input.append('logo', logo);
+    if (logo) {
+      input.append('logo', logo);
+    }
 
     return this.http.post(
       ApiConstants.API_ENDPOINT +
@@ -23,6 +25,27 @@ export class BankService {
       ApiConstants.V1 +
       ApiConstants.BANK +
       ApiConstants.STORE
+      , input,
+      { observe: 'response'} )
+     .toPromise()
+     .then(this.handleSuccess)
+     .catch(this.handleError);
+  }
+
+  update(bankId, bankModel: Bank, logo: File = null): Promise<any> {
+    const input = new FormData();
+    input.append('id', bankId);
+    input.append('name', bankModel.name);
+    input.append('abbre', bankModel.abbre);
+    if (logo) {
+      input.append('logo', logo);
+    }
+    return this.http.post(
+      ApiConstants.API_ENDPOINT +
+      ApiConstants.ADMIN +
+      ApiConstants.V1 +
+      ApiConstants.BANK +
+      ApiConstants.UPDATE
       , input,
       { observe: 'response'} )
      .toPromise()
@@ -40,6 +63,21 @@ export class BankService {
      .toPromise()
      .then(this.handleSuccess)
      .catch(this.handleError);
+  }
+
+  fetchBankDetail(id): Promise<any> {
+    return this.http
+      .get(
+        ApiConstants.API_ENDPOINT +
+        ApiConstants.ADMIN +
+        ApiConstants.V1 +
+        ApiConstants.BANK +
+        ApiConstants.DETAIL + '/' +
+        id
+      )
+      .toPromise()
+      .then(this.handleSuccess)
+      .catch(this.handleError);
   }
 
   removeBank(bankId: Number): Promise<any> {

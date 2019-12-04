@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+
 // Models
 import { Bank } from '../models/bank.model';
 
@@ -14,9 +15,9 @@ export class BankFormService {
 
   createForm(bank: Bank) {
     return this.fb.group({
-        name: [bank.name, [Validators.required]],
+        name: [bank.name, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
         abbre: [bank.abbre, [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-        logo: [bank.logo, [Validators.required]],
+        logo: [bank.logo],
       });
   }
 }

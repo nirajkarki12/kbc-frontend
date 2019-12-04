@@ -23,9 +23,9 @@
                      <td>{{bank.abbre }}</td>
                      <td><img width="150px" src="{{ bank.logo }}"></td>
                      <td>
-                        <a [routerLink]="['/edit', bank.id]" title="Edit"><i class="fa fa-edit fa-lg mt-4"></i></a>
+                        <a [routerLink]="['/bank/edit', bank.id]" title="Edit"><i class="fa fa-edit fa-lg"></i></a>
                         &nbsp;
-                        <a title="Delete" (click)="removeBank(bank)"><i class="fa fa-remove fa-lg mt-4"></i></a>
+                        <a href="javascript:void(0)" title="Delete" (click)="removeBank(bank)"><i class="fa fa-remove fa-lg"></i></a>
                      </td>
                   </tr>
                </tbody>

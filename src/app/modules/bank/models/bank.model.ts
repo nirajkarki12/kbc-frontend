@@ -1,5 +1,5 @@
 export class Bank {
-   id: number;
+   id: any;
    name: string;
    abbre: string;
    logo: string;

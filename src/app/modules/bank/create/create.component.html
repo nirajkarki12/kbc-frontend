@@ -10,10 +10,20 @@
                   <div class="form-group col-sm-8">
                      <label for="bank-name">Bank Name</label>
                      <input type="text" class="form-control" id="bank-name" placeholder="Name" formControlName="name">
+                     <span *ngIf="bankForm.get('name').errors && (bankForm.get('name').dirty || bankForm.get('name').touched)">
+                        <span class="help-block text-red" *ngIf="bankForm.get('name').errors.required">Bank name is required</span>
+                        <span class="help-block text-red" *ngIf="bankForm.get('name').errors.minlength">Too short name</span>
+                        <span class="help-block text-red" *ngIf="bankForm.get('name').errors.maxlength">Too long name</span>
+                     </span>
                   </div>
                   <div class="form-group col-sm-4">
                      <label for="abbreviation">Abbreviation</label>
                      <input type="text" class="form-control" id="abbreviation" placeholder="Abbreviation" formControlName="abbre">
+                     <span *ngIf="bankForm.get('abbre').errors && (bankForm.get('abbre').dirty || bankForm.get('abbre').touched)">
+                        <span class="help-block text-red" *ngIf="bankForm.get('abbre').errors.required">Abbreviation is required</span>
+                        <span class="help-block text-red" *ngIf="bankForm.get('abbre').errors.minlength">Too short name</span>
+                        <span class="help-block text-red" *ngIf="bankForm.get('abbre').errors.maxlength">Too long name</span>
+                     </span>
                   </div>
                </div><!--/.row-->
                <div class="form-group">
@@ -23,7 +33,7 @@
                   </div>
                </div>
                <div class="form-actions">
-                  <button type="submit" class="btn btn-success">Save changes</button>
+                  <button type="submit" class="btn btn-success" [disabled]="buttonClicked || bankForm.invalid">Save changes</button>
                   <!-- <button class="btn btn-secondary" type="button">Cancel</button> -->
                </div>
             </form>

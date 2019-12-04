@@ -4,7 +4,7 @@ export class AppRoutes {
   public static BASE_URL = environment.HOME_BASE_URL;
   public static login = 'login';
   public static dashboard = 'dashboard';
-  public static edit = 'edit/:slug';
+  public static edit = 'edit/:id';
   public static create = 'create';
   public static list = 'list';
   public static users = 'users';

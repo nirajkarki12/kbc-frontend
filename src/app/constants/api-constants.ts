@@ -10,8 +10,10 @@ export class ApiConstants {
   public static PROFILE = '/user-info';
   public static USER = '/user';
   public static BANK = '/bank';
+  public static DETAIL = '/detail';
   public static STORE = '/store';
   public static CREATE = '/create';
+  public static UPDATE = '/update';
   public static DELETE = '/delete';
   public static VERIFY_TOKEN = '/verify-token';
   public static TOKEN = '/token';

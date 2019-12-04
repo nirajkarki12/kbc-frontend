@@ -5,6 +5,8 @@ import { AppRoutes } from 'src/app/constants/app-routes';
 import { ListComponent } from './list/list.component';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
+// Resolver
+import { BankDetailResolverService } from './services/resolver/bank-detail-resolver.service';
 
 
 const routes: Routes = [
@@ -25,6 +27,9 @@ const routes: Routes = [
   {
     path: AppRoutes.edit,
     component: EditComponent,
+    resolve: {
+      'bank': BankDetailResolverService,
+    },
     data: {
       title: 'Edit Bank'
     }
