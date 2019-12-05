@@ -19,7 +19,6 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.fetchBank();
-    console.log(this.banks);
   }
 
   fetchBank() {

@@ -40,7 +40,7 @@ export class EditComponent implements OnInit {
   edit() {
     this.buttonClicked = true;
     this.bankService
-      .update(this.bankEdit.id, this.bankForm.value, this.logo)
+      .update(this.bankForm.value, this.logo)
       .then(response => {
         this.toastr.showMessage(response.body.message);
         this.router.navigate([AppRoutes.bank + '/' + AppRoutes.list]);

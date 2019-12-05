@@ -25,6 +25,62 @@ export class AtmChargeService {
      .catch(this.handleError);
   }
 
+  atmChargeList(): Promise<any> {
+    return this.http.get(
+      ApiConstants.API_ENDPOINT +
+      ApiConstants.ADMIN +
+      ApiConstants.V1 +
+      ApiConstants.ATM
+    )
+     .toPromise()
+     .then(this.handleSuccess)
+     .catch(this.handleError);
+  }
+
+  fetchAtmChargeDetail(id): Promise<any> {
+    return this.http
+      .get(
+        ApiConstants.API_ENDPOINT +
+        ApiConstants.ADMIN +
+        ApiConstants.V1 +
+        ApiConstants.ATM +
+        ApiConstants.DETAIL + '/' +
+        id
+      )
+      .toPromise()
+      .then(this.handleSuccess)
+      .catch(this.handleError);
+  }
+
+  update(atmCharge: ATMCharge): Promise<any> {
+    return this.http.post(
+      ApiConstants.API_ENDPOINT +
+      ApiConstants.ADMIN +
+      ApiConstants.V1 +
+      ApiConstants.ATM +
+      ApiConstants.UPDATE
+      , atmCharge,
+      { observe: 'response'} )
+     .toPromise()
+     .then(this.handleSuccess)
+     .catch(this.handleError);
+  }
+
+  removeAtmCharge(atmChargeId: any): Promise<any> {
+    return this.http
+      .delete(
+        ApiConstants.API_ENDPOINT +
+        ApiConstants.ADMIN +
+        ApiConstants.V1 +
+        ApiConstants.ATM +
+        ApiConstants.DELETE + '/' +
+        atmChargeId
+      )
+      .toPromise()
+      .then(this.handleSuccess)
+      .catch(this.handleError);
+  }
+
   handleSuccess(response: any): Promise<any> {
     return Promise.resolve(response);
 

@@ -48,9 +48,9 @@ export class CreateComponent implements OnInit {
     { name: 'NEPS'},
     { name: 'VISA'},
   ];
-  selectFromBank;
-  selectNetwork;
-  selectToBank;
+  selectFromBank: Array<any> = [];
+  selectNetwork: Array<any> = [];
+  selectToBank: Array<any> = [];
 
   constructor(
     private router: Router,
@@ -64,28 +64,41 @@ export class CreateComponent implements OnInit {
     this.route.data
       .subscribe((data) => {
         this.banks = data.banks.data;
-        console.log(this.banks);
 
         this.atmForm = this.atmChargeFormService.createForm(this.atmCharge);
       });
+  }
+
+  OnItemDeSelect(item: any, field: any) {
+    switch (field) {
+      case 'selectFromBank':
+      this.selectFromBank = [];
+      break;
+      case 'selectNetwork':
+      this.selectNetwork = [];
+      break;
+      case 'selectToBank':
+      this.selectToBank = [];
+      break;
+    }
   }
 
   create() {
     this.atmForm.patchValue({
       bank_from: this.selectFromBank.map(x => x.id)[0],
       network: this.selectNetwork.map(x => x.name),
-      bank_to: this.selectToBank.map(x => x.id),
+      bank_to: this.selectToBank.map((x) => {
+        return {id: x.id, name: x.name};
+      })
     });
-    console.log(this.atmForm);
     this.buttonClicked = true;
     this.atmChargeService
       .create(this.atmForm.value)
       .then(response => {
         this.toastr.showMessage(response.body.message);
-        this.router.navigate([AppRoutes.bank + '/' + AppRoutes.list]);
+        this.router.navigate([AppRoutes.atmCharge + '/' + AppRoutes.list]);
       })
       .catch(errorResponse => {
-        console.log(errorResponse);
         this.buttonClicked = false;
         this.toastr.showMessage(errorResponse.error.message, 'error');
       });

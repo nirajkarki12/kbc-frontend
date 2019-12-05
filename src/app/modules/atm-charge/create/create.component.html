@@ -11,6 +11,8 @@
                      <label for="from-bank">From Bank</label>
                      <angular2-multiselect [data]="banks" id="from-bank" [(ngModel)]="selectFromBank" [ngModelOptions]="{standalone: true}"
                         [settings]="bankFromSettings"
+                        (onDeSelect)="OnItemDeSelect($event, 'selectFromBank')"
+                        (onDeSelectAll)="OnItemDeSelect($event, 'selectFromBank')"
                         >
                      </angular2-multiselect>
                   </div>
@@ -18,6 +20,7 @@
                      <label for="network">Network</label>
                      <angular2-multiselect [data]="networks" id="network" [(ngModel)]="selectNetwork" [ngModelOptions]="{standalone: true}"
                         [settings]="networkSettings" 
+                        (onDeSelectAll)="OnItemDeSelect($event, 'selectNetwork')"
                         >
                      </angular2-multiselect>
                   </div>
@@ -26,10 +29,10 @@
                   <label for="to-bank">To Bank</label>
                   <angular2-multiselect [data]="banks" id="to-bank" [(ngModel)]="selectToBank" [ngModelOptions]="{standalone: true}" 
                      [settings]="bankToSettings" 
+                     (onDeSelectAll)="OnItemDeSelect($event, 'selectToBank')"
                      >
                   </angular2-multiselect>
                </div>
-               {{ selectNetwork | json }}
                <div class="row">
                   <div class="form-group col-sm-4">
                      <label for="charge">Charge</label>
@@ -49,11 +52,10 @@
                      </span>
                   </div>
                </div>
-               
                <div class="form-actions">
                   <button type="submit" class="btn btn-success" [disabled]="
-                        (buttonClicked || atmForm.invalid) && 
-                        (!selectFromBank || !selectNetwork || !selectToBank)"
+                        (buttonClicked || atmForm.invalid) || 
+                        (selectFromBank.length === 0 || selectNetwork.length === 0 || selectToBank.length === 0)"
                         >Save</button>
                   <!-- <button class="btn btn-secondary" type="button">Cancel</button> -->
                </div>

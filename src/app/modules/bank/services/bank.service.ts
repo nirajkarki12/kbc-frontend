@@ -32,9 +32,9 @@ export class BankService {
      .catch(this.handleError);
   }
 
-  update(bankId, bankModel: Bank, logo: File = null): Promise<any> {
+  update(bankModel: Bank, logo: File = null): Promise<any> {
     const input = new FormData();
-    input.append('id', bankId);
+    input.append('id', bankModel.id);
     input.append('name', bankModel.name);
     input.append('abbre', bankModel.abbre);
     if (logo) {

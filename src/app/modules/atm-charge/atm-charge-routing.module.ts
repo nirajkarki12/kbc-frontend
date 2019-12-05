@@ -8,6 +8,7 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 // Resolver
 import { BankDataResolverService } from './services/resolver/bank-data-resolver.service';
+import { AtmChargeDataResolverService } from './services/resolver/atm-charge-data-resolver.service';
 
 const routes: Routes = [
   {
@@ -38,7 +39,11 @@ const routes: Routes = [
         component: EditComponent,
         data: {
           title: 'Edit Record'
-        }
+        },
+        resolve: {
+          'banks': BankDataResolverService,
+          'atmCharge': AtmChargeDataResolverService,
+        },
       },
     ]
   }
