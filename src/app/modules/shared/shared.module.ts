@@ -7,6 +7,8 @@ import { DatePipe } from '@angular/common';
 import { CustomFormsModule } from 'ngx-custom-validators';
 // https://www.npmjs.com/package/angular2-multiselect-dropdown
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+// Pagination Component
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 import { NoRecordsFoundComponent } from './components/no-records-found/no-records-found.component';
 import { LoadingComponent } from './components/loading/loading.component';
@@ -20,6 +22,7 @@ import { ValidatorMessageService } from './services/validator-message/validator-
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    PaginationModule.forRoot(),
     CustomFormsModule,
   ],
   declarations: [
@@ -31,6 +34,7 @@ import { ValidatorMessageService } from './services/validator-message/validator-
     AngularMultiSelectModule,
     FormsModule,
     ReactiveFormsModule,
+    PaginationModule,
     CustomFormsModule,
     RouterModule,
     NoRecordsFoundComponent,

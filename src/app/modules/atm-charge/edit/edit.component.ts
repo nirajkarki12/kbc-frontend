@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { AppRoutes } from 'src/app/constants/app-routes';
@@ -9,13 +9,14 @@ import { ValidatorMessageService } from 'src/app/modules/shared/services/validat
 // Models
 import { Bank } from 'src/app/modules/bank/models/bank.model';
 import { ATMCharge } from '../models/atm-charge.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
 })
-export class EditComponent implements OnInit {
+export class EditComponent implements OnInit, OnDestroy {
   atmCharge: ATMCharge = new ATMCharge();
   banks: Bank[];
   atmForm: FormGroup;
@@ -52,6 +53,8 @@ export class EditComponent implements OnInit {
   selectFromBank: Array<any> = [];
   selectNetwork: Array<any> = [];
   selectToBank: Array<any> = [];
+  returnPage: number = 1;
+  sub: Subscription;
 
   constructor(
     private router: Router,
@@ -80,8 +83,9 @@ export class EditComponent implements OnInit {
         this.selectToBank = this.atmCharge.bank_to.map(x => {
           return this.banks.find(y => y.id === x.id);
         });
-
-          console.log(this.selectToBank);
+        this.sub = this.route.queryParams.subscribe(params => {
+          this.returnPage = params['returnPage'];
+        });
         this.atmForm = this.atmChargeFormService.createForm(this.atmCharge);
       });
   }
@@ -114,12 +118,18 @@ export class EditComponent implements OnInit {
       .update(this.atmForm.value)
       .then(response => {
         this.toastr.showMessage(response.body.message);
-        this.router.navigate([AppRoutes.atmCharge + '/' + AppRoutes.list]);
+        this.router.navigate([AppRoutes.atmCharge + '/' + AppRoutes.list], { queryParams: { page: this.returnPage }});
       })
       .catch(errorResponse => {
         this.buttonClicked = false;
         this.toastr.showMessage(errorResponse.error.message, 'error');
       });
+  }
+
+  ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
 }

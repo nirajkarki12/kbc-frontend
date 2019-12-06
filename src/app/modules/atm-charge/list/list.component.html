@@ -23,7 +23,7 @@
                      </thead>
                      <tbody>
                         <tr *ngFor="let data of atmCharge; let index = index">
-                           <td>{{ index + 1 }}</td>
+                           <td>{{ index + 1 + ((paginate.current_page - 1) * paginate.per_page) }}</td>
                            <td>{{ data.name }}</td>
                            <td>{{ data.network }}</td>
                            <td>
@@ -34,12 +34,38 @@
                            <td>{{ data.charge }}</td>
                            <td>{{ data.note || '-' }}</td>
                            <td>
-                              <a [routerLink]="['/atm-charge/edit', data.id]" title="Edit"><i class="fa fa-edit fa-lg"></i></a>
+                              <a [routerLink]="['/atm-charge/edit', data.id]" [queryParams]="{returnPage: paginate.current_page}" title="Edit"><i class="fa fa-edit fa-lg"></i></a>
                               &nbsp;
                               <a href="javascript:void(0)" title="Delete" (click)="removeAtmCharge(data)"><i class="fa fa-remove fa-lg"></i></a>
                            </td>
                         </tr>
                      </tbody>
+                     <tfoot>
+                        <tr>
+                           <td colspan="7">
+                              <div class="card-body">
+                                 <div class="row">
+                                    <div class="col-xs-12 col-12">
+                                       <pagination 
+                                          [boundaryLinks]="true"
+                                          [rotate]="true"
+                                          [directionLinks]="true" 
+                                          [totalItems]="paginate.total" 
+                                          [(ngModel)]="paginate.current_page"
+                                          [itemsPerPage]="paginate.per_page"
+                                          [maxSize]="5"
+                                          previousText="&lsaquo;&lsaquo;" 
+                                          nextText="&rsaquo;&rsaquo;"
+                                          (pageChanged)="fetchAtmCharge($event.page)"
+                                          >
+                                       </pagination>
+                                    </div>
+                                 </div>
+                              </div>
+                           </td>
+                        </tr>
+                        
+                     </tfoot>
                   </table>
                   <!-- <ul class="pagination">
                      <li class="page-item"><a class="page-link" href="#">Prev</a></li>

@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { ApiConstants } from 'src/app/constants/api-constants';
+// Models
 import { ATMCharge } from '../models/atm-charge.model';
+import { Paginate } from 'src/app/modules/shared/models/paginate.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,12 +27,13 @@ export class AtmChargeService {
      .catch(this.handleError);
   }
 
-  atmChargeList(): Promise<any> {
+  atmChargeList(pageNo: Number): Promise<any> {
     return this.http.get(
       ApiConstants.API_ENDPOINT +
       ApiConstants.ADMIN +
       ApiConstants.V1 +
-      ApiConstants.ATM
+      ApiConstants.ATM +
+      '?page=' + pageNo
     )
      .toPromise()
      .then(this.handleSuccess)
