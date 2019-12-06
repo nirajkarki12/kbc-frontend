@@ -5,13 +5,10 @@ import { AuthGuard } from 'src/app/modules/core/guards/auth.guard';
 import { DefaultLayoutComponent } from './containers';
 import {AppRoutes} from './constants/app-routes';
 
-import { P404Component } from './views/error/404.component';
-import { P500Component } from './views/error/500.component';
-import { RegisterComponent } from './views/register/register.component';
+import { P404Component } from 'src/app/modules/shared/components/error/404.component';
+import { P500Component } from 'src/app/modules/shared/components/error/500.component';
 // Components
 import { LoginComponent } from './modules/login/login.component';
-import { LoginComponent as LoginComponent2 } from './views/login/login.component';
-
 
 export const routes: Routes = [
   {
@@ -21,11 +18,6 @@ export const routes: Routes = [
     data: {
       title: 'Login'
     },
-  },
-  {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
   },
   {
     path: '404',
@@ -49,74 +41,46 @@ export const routes: Routes = [
     }
   },
   {
-    path: 'login2',
-    component: LoginComponent2,
-    data: {
-      title: 'Login Page'
-    }
-  },
-  {
-    path: 'register',
-    component: RegisterComponent,
-    data: {
-      title: 'Register Page'
-    }
-  },
-  {
-    path: '',
-    component: DefaultLayoutComponent,
-    data: {
-      title: 'Home'
-    },
-    children: [
-      {
-        path: 'base',
-        loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule)
-      },
-      {
-        path: 'buttons',
-        loadChildren: () => import('./views/buttons/buttons.module').then(m => m.ButtonsModule)
-      },
-      {
-        path: 'icons',
-        loadChildren: () => import('./views/icons/icons.module').then(m => m.IconsModule)
-      },
-      {
-        path: 'notifications',
-        loadChildren: () => import('./views/notifications/notifications.module').then(m => m.NotificationsModule)
-      },
-      {
-        path: 'theme',
-        loadChildren: () => import('./views/theme/theme.module').then(m => m.ThemeModule)
-      }
-    ]
-  },
-  {
     path: '',
     canActivate: [AuthGuard],
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Admin Portal'
+    },
     children: [
-      {
-        path: '',
-        component: DefaultLayoutComponent,
-        data: {
-          title: 'Admin Portal'
+        {
+          path: AppRoutes.dashboard,
+          loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
         },
-        children: [
-          {
-            path: AppRoutes.dashboard,
-            loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
-          },
-          {
-            path: AppRoutes.bank,
-            loadChildren: () => import('./modules/bank/bank.module').then(m => m.BankModule)
-          },
-          {
-            path: AppRoutes.atmCharge,
-            loadChildren: () => import('./modules/atm-charge/atm-charge.module').then(m => m.AtmChargeModule)
-          }
-        ]
-      },
-    ]
+        {
+          path: AppRoutes.bank,
+          loadChildren: () => import('./modules/bank/bank.module').then(m => m.BankModule)
+        },
+        {
+          path: AppRoutes.atmCharge,
+          loadChildren: () => import('./modules/atm-charge/atm-charge.module').then(m => m.AtmChargeModule)
+        },
+        {
+          path: 'base',
+          loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule)
+        },
+        {
+          path: 'buttons',
+          loadChildren: () => import('./views/buttons/buttons.module').then(m => m.ButtonsModule)
+        },
+        {
+          path: 'icons',
+          loadChildren: () => import('./views/icons/icons.module').then(m => m.IconsModule)
+        },
+        {
+          path: 'notifications',
+          loadChildren: () => import('./views/notifications/notifications.module').then(m => m.NotificationsModule)
+        },
+        {
+          path: 'theme',
+          loadChildren: () => import('./views/theme/theme.module').then(m => m.ThemeModule)
+        }
+      ]
   },
   { path: '**', component: P404Component }
 ];

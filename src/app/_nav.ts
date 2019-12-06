@@ -11,8 +11,12 @@ export const navItems: INavData[] = [
     // }
   },
   {
+    title: true,
+    name: 'Finance'
+  },
+  {
     name: 'Bank',
-    url: '/dashboard',
+    url: '/bank',
     icon: 'icon-badge',
     children: [
       {
@@ -29,7 +33,7 @@ export const navItems: INavData[] = [
   },
   {
     name: 'ATM Charge',
-    url: '/dashboard',
+    url: '/atm-charge',
     icon: 'icon-target',
     children: [
       {
@@ -46,7 +50,7 @@ export const navItems: INavData[] = [
   },
   {
     title: true,
-    name: 'Components'
+    name: 'Theme'
   },
   {
     name: 'Colors',
@@ -157,11 +161,6 @@ export const navItems: INavData[] = [
         }
       },
       {
-        name: 'Flags',
-        url: '/icons/flags',
-        icon: 'icon-star'
-      },
-      {
         name: 'Font Awesome',
         url: '/icons/font-awesome',
         icon: 'icon-star',
@@ -196,33 +195,6 @@ export const navItems: INavData[] = [
         name: 'Modals',
         url: '/notifications/modals',
         icon: 'icon-bell'
-      }
-    ]
-  },
-  {
-    name: 'Pages',
-    url: '/pages',
-    icon: 'icon-star',
-    children: [
-      {
-        name: 'Login',
-        url: '/login',
-        icon: 'icon-star'
-      },
-      {
-        name: 'Register',
-        url: '/register',
-        icon: 'icon-star'
-      },
-      {
-        name: 'Error 404',
-        url: '/404',
-        icon: 'icon-star'
-      },
-      {
-        name: 'Error 500',
-        url: '/500',
-        icon: 'icon-star'
       }
     ]
   },

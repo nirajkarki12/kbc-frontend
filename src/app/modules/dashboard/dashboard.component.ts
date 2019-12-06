@@ -7,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(
-  ) { }
+  radioModel: string = 'Month';
 
-  ngOnInit() {
+  public random(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  ngOnInit(): void {
   }
 
 }

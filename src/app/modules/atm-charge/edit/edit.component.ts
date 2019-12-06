@@ -22,6 +22,7 @@ export class EditComponent implements OnInit {
   buttonClicked: Boolean = false;
   bankFromSettings = {
     singleSelection: true,
+    disabled: true,
     text: 'Select Banks',
     enableSearchFilter: true,
     labelKey: 'name',

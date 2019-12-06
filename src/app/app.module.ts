@@ -30,10 +30,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 // Components
 import { AppComponent } from './app.component';
-import { P404Component } from './views/error/404.component';
-import { P500Component } from './views/error/500.component';
-import { LoginComponent } from './views/login/login.component';
-import { RegisterComponent } from './views/register/register.component';
+import { P404Component } from 'src/app/modules/shared/components/error/404.component';
+import { P500Component } from 'src/app/modules/shared/components/error/500.component';
 
 // Import containers
 import { DefaultLayoutComponent } from './containers';
@@ -72,8 +70,6 @@ const toastrConfig = {
     AppComponent,
     P404Component,
     P500Component,
-    LoginComponent,
-    RegisterComponent,
   ],
   providers: [
     {
