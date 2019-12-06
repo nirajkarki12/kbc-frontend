@@ -40,40 +40,26 @@
                            </td>
                         </tr>
                      </tbody>
-                     <tfoot>
+                     <tfoot *ngIf="paginate.total > paginate.per_page">
                         <tr>
                            <td colspan="7">
-                              <div class="card-body">
-                                 <div class="row">
-                                    <div class="col-xs-12 col-12">
-                                       <pagination 
-                                          [boundaryLinks]="true"
-                                          [rotate]="true"
-                                          [directionLinks]="true" 
-                                          [totalItems]="paginate.total" 
-                                          [(ngModel)]="paginate.current_page"
-                                          [itemsPerPage]="paginate.per_page"
-                                          [maxSize]="5"
-                                          previousText="&lsaquo;&lsaquo;" 
-                                          nextText="&rsaquo;&rsaquo;"
-                                          (pageChanged)="fetchAtmCharge($event.page)"
-                                          >
-                                       </pagination>
-                                    </div>
-                                 </div>
-                              </div>
+                              <pagination 
+                                 [boundaryLinks]="true"
+                                 [rotate]="true"
+                                 [directionLinks]="true" 
+                                 [totalItems]="paginate.total" 
+                                 [(ngModel)]="paginate.current_page"
+                                 [itemsPerPage]="paginate.per_page"
+                                 [maxSize]="5"
+                                 previousText="&lsaquo;&lsaquo;" 
+                                 nextText="&rsaquo;&rsaquo;"
+                                 (pageChanged)="fetchAtmCharge($event.page)"
+                                 >
+                              </pagination>
                            </td>
                         </tr>
-                        
                      </tfoot>
                   </table>
-                  <!-- <ul class="pagination">
-                     <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-                     <li class="page-item active">
-                     <a class="page-link" href="#">1</a>
-                     </li>
-                     <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                  </ul> -->
                </div>
             </ng-template>
          </div>
