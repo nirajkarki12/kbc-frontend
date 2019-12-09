@@ -39,7 +39,7 @@
                      <input type="number" class="form-control" id="charge" placeholder="Charge" formControlName="charge">
                      <span *ngIf="atmForm.get('charge').errors && (atmForm.get('charge').dirty || atmForm.get('charge').touched)">
                         <span class="help-block text-red" *ngIf="atmForm.get('charge').errors.required">Charge is required</span>
-                        <span class="help-block text-red" *ngIf="atmForm.get('charge').errors.gte">Charge Should be greater or equal to 10</span>
+                        <span class="help-block text-red" *ngIf="atmForm.get('charge').errors.gte">Charge Should be greater or equal to 0</span>
                         <span class="help-block text-red" *ngIf="atmForm.get('charge').errors.lte">Charge Should be less or equal to 1000</span>
                      </span>
                   </div>

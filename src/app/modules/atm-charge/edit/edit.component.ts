@@ -49,6 +49,7 @@ export class EditComponent implements OnInit, OnDestroy {
     { name: 'SCT'},
     { name: 'NEPS'},
     { name: 'VISA'},
+    { name: 'NPN'},
   ];
   selectFromBank: Array<any> = [];
   selectNetwork: Array<any> = [];
