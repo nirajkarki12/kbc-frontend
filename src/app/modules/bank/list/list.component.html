@@ -24,7 +24,7 @@
                            <td>{{ index + 1 + ((paginate.current_page - 1) * paginate.per_page) }}</td>
                            <td>{{ bank.name }}</td>
                            <td>{{bank.abbre }}</td>
-                           <td><img width="150px" src="{{ bank.logo }}"></td>
+                           <td><img width="30px" src="{{ bank.logo }}"></td>
                            <td>
                               <a [routerLink]="['/bank/edit', bank.id]" title="Edit"><i class="fa fa-edit fa-lg"></i></a>
                               &nbsp;

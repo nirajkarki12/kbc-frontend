@@ -46,7 +46,6 @@ export class ListComponent implements OnInit {
         this.loading = false;
         this.paginate = successResponse.data;
         this.banks = this.paginate.data;
-        console.log(this.paginate.data);
         if (this.banks.length === 0 && this.paginate.current_page > 1) {
           this.fetchBanks();
         }
