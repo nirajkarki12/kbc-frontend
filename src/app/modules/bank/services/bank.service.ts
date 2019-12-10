@@ -65,6 +65,19 @@ export class BankService {
      .catch(this.handleError);
   }
 
+  banksList(pageNo:Number): Promise<any>{
+    return this.http.get(
+      ApiConstants.API_ENDPOINT +
+      ApiConstants.ADMIN +
+      ApiConstants.V1 +
+      ApiConstants.BANK +
+      '?page='+pageNo
+    )
+    .toPromise()
+    .then(this.handleSuccess)
+    .catch(this.handleError)
+  }
+
   fetchBankDetail(id): Promise<any> {
     return this.http
       .get(
