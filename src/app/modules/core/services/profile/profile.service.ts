@@ -1,10 +1,12 @@
-import { Injectable, ɵConsole } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 // Api Constants
 import { ApiConstants } from 'src/app/constants/api-constants';
 import { Profile } from 'src/app/modules/core/models/profile.model';
+// Services
+import { ValidatorMessageService } from 'src/app/modules/shared/services/validator-message/validator-message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,8 @@ export class ProfileService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private toastr: ValidatorMessageService
   ) { }
 
   syncProfile() {
@@ -33,10 +36,11 @@ export class ProfileService {
     this.http.get<any>(ApiConstants.API_ENDPOINT + ApiConstants.ADMIN + ApiConstants.V1 + ApiConstants.AUTH + '-user')
       .subscribe(
         (successResponse) => {
-          this.profileDetail = successResponse;
+          this.profileDetail = successResponse.data;
           this.syncProfile();
         }, (errorResponse) => {
             console.log(errorResponse);
+            this.toastr.showMessage(errorResponse.error.message, 'error');
         });
   }
 }

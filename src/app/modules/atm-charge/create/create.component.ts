@@ -47,6 +47,7 @@ export class CreateComponent implements OnInit {
     { name: 'SCT'},
     { name: 'NEPS'},
     { name: 'VISA'},
+    { name: 'NPN'},
   ];
   selectFromBank: Array<any> = [];
   selectNetwork: Array<any> = [];
