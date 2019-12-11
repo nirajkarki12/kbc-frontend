@@ -68,10 +68,8 @@ export class EditComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.data
       .subscribe((data) => {
-        console.log(data);
         this.banks = data.banks.data;
         this.atmCharge = data.atmCharge.data;
-        console.log(this.banks);
         // Adding data to array
         this.selectFromBank.push(
           this.banks.find(x => {

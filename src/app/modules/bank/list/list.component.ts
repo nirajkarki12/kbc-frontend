@@ -4,6 +4,8 @@ import { Bank } from '../models/bank.model';
 import { Paginate } from 'src/app/modules/shared/models/paginate.model';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination/public_api';
 import { ValidatorMessageService } from 'src/app/modules/shared/services/validator-message/validator-message.service';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -15,27 +17,19 @@ export class ListComponent implements OnInit {
   paginate: Paginate = new Paginate();
   loading = true;
   event: PageChangedEvent;
+  sub: Subscription;
 
   constructor(
+    private route: ActivatedRoute,
     private bankService: BankService,
     private toastr: ValidatorMessageService
   ) { }
 
   ngOnInit() {
-    this.fetchBanks();
-  }
-
-  fetchBank() {
-    this.loading = true;
-    this.bankService
-      .bankList()
-      .then(successResponse => {
-        this.loading = false;
-        this.banks = successResponse.data;
-      })
-      .catch(errorResponse => {
-        console.log(errorResponse);
-      });
+    this.sub = this.route.queryParams.subscribe(params => {
+      this.paginate.current_page = params['page'] || 1;
+      this.fetchBanks(this.paginate.current_page);
+    });
   }
 
   fetchBanks(pageNo = 1) {
@@ -61,7 +55,7 @@ export class ListComponent implements OnInit {
         .removeBank(bank.id)
         .then(successResponse => {
           this.toastr.showMessage('Bank deleted Successfully');
-          this.fetchBank();
+          this.fetchBanks(this.paginate.current_page);
         })
         .catch(errorResponse => {
           this.toastr.showMessage(errorResponse, 'error');

@@ -10,6 +10,7 @@ export class ApiConstants {
   public static PROFILE = '/user-info';
   public static USER = '/user';
   public static BANK = '/bank';
+  public static PAGINATE = '/paginate';
   public static ATM = '/atm';
   public static DETAIL = '/detail';
   public static STORE = '/store';
