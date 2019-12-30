@@ -56,6 +56,10 @@ export class HttpInterceptorService implements HttpInterceptor {
             this.toastr.showMessage(errorResponse.error.message, 'error');
             this.authService.removeAuthToken();
             this.router.navigate([AppRoutes.login]);
+          } else if (errorResponse.status === 500 && errorResponse.error.message === 'Token has expired and can no longer be refreshed') {
+            this.toastr.showMessage(errorResponse.error.message, 'error');
+            this.authService.removeAuthToken();
+            this.router.navigate([AppRoutes.login]);
           }
         }
       }

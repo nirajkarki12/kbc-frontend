@@ -33,6 +33,7 @@
     "mutationobserver-shim": "^0.3.3",
     "ngx-bootstrap": "^5.2.0",
     "ngx-custom-validators": "^8.0.0",
+    "ngx-debounce": "^2.0.1",
     "ngx-perfect-scrollbar": "^8.0.0",
     "ngx-toastr": "^11.2.1",
     "popper.js": "^1.16.0",

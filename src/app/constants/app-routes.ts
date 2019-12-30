@@ -9,6 +9,7 @@ export class AppRoutes {
   public static list = 'list';
   public static users = 'users';
   public static bank = 'bank';
+  public static sms = 'sms';
   public static detail = 'detail/:id';
   public static atmCharge = 'atm-charge';
   // pages

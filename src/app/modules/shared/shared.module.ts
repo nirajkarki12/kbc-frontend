@@ -8,7 +8,12 @@ import { CustomFormsModule } from 'ngx-custom-validators';
 // https://www.npmjs.com/package/angular2-multiselect-dropdown
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 // Pagination Component
-import { PaginationModule } from 'ngx-bootstrap/pagination';
+import {
+  PaginationModule,
+  CollapseModule
+} from 'ngx-bootstrap';
+// https://www.npmjs.com/package/ngx-debounce
+import { DebounceModule } from 'ngx-debounce';
 
 import { NoRecordsFoundComponent } from './components/no-records-found/no-records-found.component';
 import { LoadingComponent } from './components/loading/loading.component';
@@ -23,6 +28,8 @@ import { ValidatorMessageService } from './services/validator-message/validator-
     ReactiveFormsModule,
     RouterModule,
     PaginationModule.forRoot(),
+    CollapseModule.forRoot(),
+    DebounceModule,
     CustomFormsModule,
   ],
   declarations: [
@@ -35,6 +42,8 @@ import { ValidatorMessageService } from './services/validator-message/validator-
     FormsModule,
     ReactiveFormsModule,
     PaginationModule,
+    CollapseModule,
+    DebounceModule,
     CustomFormsModule,
     RouterModule,
     NoRecordsFoundComponent,

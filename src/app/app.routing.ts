@@ -61,6 +61,10 @@ export const routes: Routes = [
           loadChildren: () => import('./modules/atm-charge/atm-charge.module').then(m => m.AtmChargeModule)
         },
         {
+          path: AppRoutes.sms,
+          loadChildren: () => import('./modules/sms/sms.module').then(m => m.SmsModule)
+        },
+        {
           path: 'base',
           loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule)
         },

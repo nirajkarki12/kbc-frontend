@@ -49,6 +49,11 @@ export const navItems: INavData[] = [
     ]
   },
   {
+    name: 'SMS Report',
+    url: '/sms',
+    icon: 'icon-bubble',
+  },
+  {
     title: true,
     name: 'Theme'
   },
