@@ -26,6 +26,20 @@ export class SmsService {
     .catch(this.handleError);
   }
 
+  resendSms(filterParam: SmsSearchParam): Promise<any> {
+    return this.http.post(
+      ApiConstants.API_ENDPOINT +
+      ApiConstants.ADMIN +
+      ApiConstants.V1 +
+      ApiConstants.SMS +
+      ApiConstants.RESEND
+      , filterParam ,
+      { observe: 'response'} )
+    .toPromise()
+    .then(this.handleSuccess)
+    .catch(this.handleError);
+  }
+
   handleSuccess(response: any): Promise<any> {
     return Promise.resolve(response);
   }

@@ -60,8 +60,26 @@ export class ListComponent implements OnInit {
       })
       .catch(errorResponse => {
         this.toastr.showMessage(errorResponse.error.message, 'error');
-        console.log(errorResponse);
       });
+  }
+
+  resendSms() {
+    if (confirm('Are you sure to re-schedule SMS?')) {
+      this.loading = true;
+      this.smsService
+        .resendSms(this.filterParam)
+        .then(successResponse => {
+          this.loading = false;
+          console.log(successResponse);
+          this.resetFilterParam();
+          this.toggleCollapse();
+          this.toastr.showMessage('SMS schedule have been on for filtered record\'s', 'success');
+        })
+        .catch(errorResponse => {
+          this.toastr.showMessage(errorResponse.error.message, 'error');
+          console.log(errorResponse);
+        });
+    }
   }
 
   resetFilterParam() {

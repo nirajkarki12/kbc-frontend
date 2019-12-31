@@ -14,8 +14,59 @@
                   <div class="row">
                      <div class="col-sm-4">
                         <div class="form-group">
-                           <label class="col-form-label" for="mobileNumber">Mobile Number</label>
-                           <input debounce [delay]="delay" [(ngModel)]="filterParam.mobileNumber" (func)="fetchSmsList()" [ngModelOptions]="{standalone: true}" placeholder="mobile number" id="mobileNumber" class="form-control" size="16" type="text">
+                           <label class="col-form-label" for="name">Full Name</label>
+                           <input debounce [delay]="delay" [(ngModel)]="filterParam.name" (func)="fetchSmsList()" [ngModelOptions]="{standalone: true}" placeholder="Full Name" id="name" class="form-control" size="16" type="text">
+                        </div>
+                     </div>
+
+                     <div class="col-sm-4">
+                        <div class="form-group">
+                           <label class="col-form-label" for="registrationCode">Registration Code</label>
+                           <input debounce [delay]="delay" [(ngModel)]="filterParam.registrationCode" (func)="fetchSmsList()" [ngModelOptions]="{standalone: true}" placeholder="LEADER_" id="registrationCode" class="form-control reg-code" size="16" type="text">
+                        </div>
+                     </div>
+
+                     <div class="col-sm-4">
+                        <div class="form-group">
+                           <label class="col-form-label" for="number">Mobile Number</label>
+                           <input debounce [delay]="delay" [(ngModel)]="filterParam.number" (func)="fetchSmsList()" [ngModelOptions]="{standalone: true}" placeholder="98********" id="number" class="form-control" size="16" type="text">
+                        </div>
+                     </div>
+
+                     <div class="col-sm-4">
+                        <div class="form-group">
+                           <label class="col-form-label" for="status">Status</label>
+                           <select debounce [delay]="delay" [(ngModel)]="filterParam.status" (change)="fetchSmsList()" [ngModelOptions]="{standalone: true}" id="status" class="form-control">
+                              <option value="0">All</option>
+                              <option value="success">Success</option>
+                              <option value="failure">Failure</option>
+                              <option value="queue">Queue</option>
+                            </select>
+                        </div>
+                     </div>
+
+                     <div class="col-sm-4">
+                        <div class="form-group">
+                           <label class="col-form-label" for="network">Sent From</label>
+                           <select debounce [delay]="delay" [(ngModel)]="filterParam.network" (change)="fetchSmsList()" [ngModelOptions]="{standalone: true}" id="network" class="form-control">
+                              <option value="0">All</option>
+                              <option value="SparrowSms">SparrowSms</option>
+                              <option value="Nexmo">Nexmo</option>
+                            </select>
+                        </div>
+                     </div>
+
+                     <div class="col-sm-4">
+                        <div class="form-group">
+                           <label class="col-form-label" for="countryCode">Country Code</label>
+                           <input debounce [delay]="delay" [(ngModel)]="filterParam.countryCode" (func)="fetchSmsList()" [ngModelOptions]="{standalone: true}" placeholder="977" id="countryCode" class="form-control" size="16" type="text">
+                        </div>
+                     </div>
+
+                     <div class="col-sm-4">
+                        <div class="form-group">
+                           <label class="col-form-label" for="responseCode">Response Code</label>
+                           <input debounce [delay]="delay" [(ngModel)]="filterParam.responseCode" (func)="fetchSmsList()" [ngModelOptions]="{standalone: true}" placeholder="1012" id="responseCode" class="form-control" size="16" type="text">
                         </div>
                      </div>
                   </div>
@@ -23,8 +74,10 @@
                      <div class="col-sm-6">
                         <div class="form-actions">
                            <button class="btn btn-secondary" (click)="resetFilterParam()" type="button">Reset</button>
+                           <button class="btn btn-danger active" [disabled]="loading" (click)="resendSms()" type="button">Resend SMS</button>
                         </div>
                      </div>
+                     
                   </div>
                </form>
             </div>
@@ -45,23 +98,25 @@
                      <thead>
                         <tr>
                            <th style="width: 10px">#</th>
+                           <th>Full Name</th>
                            <th>Mobile</th>
                            <th>Registration Code</th>
                            <th>Sent From</th>
-                           <th>Request</th>
+                           <th>Requested</th>
                            <th>Status</th>
-                           <th>Message</th>
+                           <th width="22%">Message</th>
                         </tr>
                      </thead>
                      <tbody>
                         <tr *ngFor="let s of sms; let index = index">
                            <td>{{ index + 1 + ((paginate.current_page - 1) * paginate.per_page) }}</td>
-                           <td>{{ s.country_code + '-' + s.number }}</td>
+                           <td>{{ s.name }}</td>
+                           <td>{{ '(' + s.country_code + ') ' + s.request.to }}</td>
                            <td>{{ s.registration_code || '-' }}</td>
                            <td>{{ s.type }}</td>
                            <td>{{ (s.registration_code_send_count + 1) + ' times' }}</td>
-                           <td>{{ (s.status == true) ? 'Success' : 'Failure' }}</td>
-                           <td>{{ s.message }}</td>
+                           <td>{{ (s.sms_queue == false) ? (s.status == true) ? 'Success' : 'Failure' : 'Queue' }}</td>
+                           <td>{{ (s.sms_queue == false) ? '(' + s.response_code + ') -> ' + s.message : s.message }}</td>
                         </tr>
                      </tbody>
                      <tfoot *ngIf="paginate.total > paginate.per_page">

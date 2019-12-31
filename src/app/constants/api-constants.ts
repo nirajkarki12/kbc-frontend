@@ -13,6 +13,7 @@ export class ApiConstants {
   public static PAGINATE = '/paginate';
   public static ATM = '/atm';
   public static SMS = '/sms';
+  public static RESEND = '/resend';
   public static DETAIL = '/detail';
   public static STORE = '/store';
   public static CREATE = '/create';
